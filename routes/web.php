@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\TareaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 Route::get('/empleado',          [EmpleadoController::class, 'index']);
 Route::post('/empleado',         [EmpleadoController::class, 'store']);
+Route::get('/tarea',          [TareaController::class, 'index']);
+Route::post('/tarea',         [TareaController::class, 'store']);
