@@ -24,7 +24,8 @@
                         <input type="text" name="nombre" class="form-control" placeholder="Nombre del Empleado">
                     </div>
                     <div class="form-group">
-                        <input type="date" name="fecha_contratacion" class="form-control" placeholder="Fecha de contratacion">
+                        <input type="date" name="fecha_contratacion" class="form-control"
+                            placeholder="Fecha de contratacion">
                     </div>
                     <div class="form-group">
                         <input type="number" name="horas_trabajadas" class="form-control" placeholder="Horas trabajadas">
@@ -50,7 +51,7 @@
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                 <thead>
-                    <tr> 
+                    <tr>
                         <th>Item</th>
                         <th>Nombre</th>
                         <th>Fecha de Contratacion</th>
@@ -77,7 +78,20 @@
         </div>
         <!-- /.card-body -->
     </div>
+    <div>
+        <form action="{{ url('buscar') }}" method="post">
+            @csrf
+            <label> Seleccionar el Departamento :</label>
+            <select name="datoFiltrado">
 
+                @foreach ($empleado as $item)
+                    <option value="{{ $item->departamento }}"> {{ $item->departamento }}</option>
+                @endforeach
+
+            </select>
+            <button type="submit">Filtrar por Departamentos</button>
+        </form>
+    </div>
 @endsection
 
 @section('script')

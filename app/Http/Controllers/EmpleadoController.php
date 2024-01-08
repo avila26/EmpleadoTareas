@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\empleado;
+use App\Models\tarea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoController extends Controller
 {
@@ -23,4 +25,26 @@ class EmpleadoController extends Controller
         $empleado->save();
         return back();
     }
+    public function mostrarEmpleados( Request $request)
+    {
+   
+        $empleados = Empleado::where('estado', 1)-> where('departamento', $request->datoFiltrado)->get();
+
+    
+        return view('empleaTareas.mostrarEmpleados', compact('empleados'));
+    }
+
+    // public function filtrar(Request $request){
+    //      $empleados = Empleado::where('estado', 1)->get();
+    //     $libros= DB::table('libros')
+    //     ->join('autors', 'autor_id', '=','autors.id')
+    //     ->where('libros.estado', 1)
+    //     ->where('autors.id', '=', $request->datoFiltrado)
+    //     ->select('libros.*', 'libros.nombre as nombre_libro', 'autors.nombre as nombre_autor')
+    //     ->get();
+    //     return view('librito.tabla',compact('libros', 'autor'));//  
+    // } 
+    
+
+    
 }

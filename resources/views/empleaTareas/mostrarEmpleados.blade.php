@@ -8,69 +8,46 @@
 @endsection
 
 @section('contenido')
-
+    <!-- left column -->
     <div class="col-md-12">
-
+        <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">:: Ingresar Tareas ::</h3>
+                <h3 class="card-title">::Empleados ::</h3>
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
             </div>
-            <form action="{{ url('tarea') }}" method="post">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Empleado</label>
-                        <select name="empleado_id">
-                            @foreach ($empleado as $item)
-                                <option value="{{ $item->id }}">{{ $item->nombre}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="nombreTarea" class="form-control" placeholder="Nombre de la tarea">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="tiempoInvertido" class="form-control" placeholder="Tiempo Invertdo">
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-success">Registrar</button>
-                </div>
-            </form>
-
-
+            <!-- /.card-header -->
+            <!-- form start -->
         </div>
-
     </div>
     <div class="card col-md-12">
         <div class="card-header">
-            <h3 class="card-title">:: Lista de Tareas ::</h3>
+            <h3 class="card-title">:: Lista de Empleados ::</h3>
         </div>
-        <!-- /.card-header -->
+
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped" style="text-align: center">
                 <thead>
-                    <tr>
+                    <tr> 
                         <th>Item</th>
-                        <th>Empleado</th>
-                        <th>Tarea</th>
-                        <th>tiempoInvertido</th>
+                        <th>Nombre</th>
+                        <th>Fecha de Contratacion</th>
+                        <th>Salario</th>
+                        <th>Horas Trabajadas</th>
+                        <th>Departamento</th>
+
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($tarea as $item)
+                    @foreach ($empleados as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->nombre }}</td>
-                            <td>{{ $item->nombreTarea }}</td>
-                            <td>{{ $item->tiempoInvertido }}</td>
+                            <td>{{ $item->fecha_contratacion }}</td>
+                            <td>{{ $item->salario }}</td>
+                            <td>{{ $item->horas_trabajadas }}</td>
+                            <td>{{ $item->departamento }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -78,7 +55,12 @@
         </div>
         <!-- /.card-body -->
     </div>
-
+    {{-- <form action="{{ route('calcularTotalVentas') }}" method="post">
+        @csrf
+        <label for="fecha_seleccionada">Fecha Seleccionada:</label>
+        <input type="date" name="fecha_seleccionada" required>
+        <button type="submit">Calcular Total Ventas</button>
+    </form> --}}
 @endsection
 
 @section('script')
@@ -117,5 +99,3 @@
         });
     </script>
 @endsection
-
-
